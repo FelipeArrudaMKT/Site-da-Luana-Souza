@@ -1,0 +1,8 @@
+{
+  "name": "Salgados da Dona Lu - Landing Page",
+  "description": "Uma landing page de vendas profissional e acolhedora para o curso de salgados caseiros da Dona Lu, com receitas clássicas e gourmet.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
