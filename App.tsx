@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Hero from './components/Hero';
-import VSL from './components/VSL';
 import History from './components/History';
 import CourseSection from './components/CourseSection';
 import Footer from './components/Footer';
@@ -17,9 +16,6 @@ const App: React.FC = () => {
 
       <main className="flex-grow">
         <Hero />
-        <div className="bg-stone-50 py-16 px-4 md:px-0">
-          <VSL />
-        </div>
         <History />
         <CourseSection />
       </main>
