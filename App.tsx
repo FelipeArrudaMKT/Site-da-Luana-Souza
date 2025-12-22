@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Hero from './components/Hero';
 import VSL from './components/VSL';
 import History from './components/History';
@@ -28,6 +29,9 @@ const App: React.FC = () => {
       
       {/* Social Proof Notification */}
       <SalesNotification />
+      
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </div>
   );
 };
