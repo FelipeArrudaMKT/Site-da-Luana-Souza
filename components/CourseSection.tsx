@@ -143,19 +143,18 @@ const CourseSection: React.FC = () => {
                 </div>
               </div>
               
-              <div className="relative mb-6 group">
-                <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full transform scale-75 group-hover:scale-100 transition-transform duration-500"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Mockup Receitas da Lu" 
-                  className="relative w-full h-44 object-cover rounded-2xl shadow-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-300 border-4 border-white/40"
-                />
-                <div className="absolute bottom-4 right-4 bg-amber-600 p-2.5 rounded-xl shadow-lg border border-white/20">
-                    <BookOpen className="w-5 h-5" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center border border-white/30 shadow-inner">
+                  <BookOpen className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-black font-serif leading-tight">Receitas da Lu</h3>
+                  <div className="flex gap-1 text-amber-100">
+                    {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-current" />)}
+                  </div>
                 </div>
               </div>
-              
-              <h3 className="text-3xl font-black mb-2 font-serif leading-tight">Receitas da Lu</h3>
+
               <p className="text-amber-50 text-sm mb-8 leading-relaxed font-medium">Todas as medidas e segredos das massas e recheios mais vendidos da Dona Lu.</p>
 
               <div className="space-y-4 mb-10 text-sm">
