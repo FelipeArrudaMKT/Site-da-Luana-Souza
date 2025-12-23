@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Hero from './components/Hero';
 import History from './components/History';
 import CourseSection from './components/CourseSection';
@@ -24,6 +25,9 @@ const App: React.FC = () => {
       
       {/* Social Proof Notification */}
       <SalesNotification />
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 };
