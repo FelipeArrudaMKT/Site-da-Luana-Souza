@@ -16,16 +16,30 @@ const MODULES = [
 ];
 
 const TESTIMONIALS = [
-  { id: '1', name: 'Maria S.', avatar: 'https://i.pravatar.cc/150?u=maria', text: 'Graças à Dona Lu, vendi 200 salgados na primeira semana! O suporte no WhatsApp é maravilhoso.' },
-  { id: '2', name: 'Ricardo F.', avatar: 'https://i.pravatar.cc/150?u=ricardo', text: 'Sempre cozinhei por hobby, mas esse curso me deu a segurança para abrir meu delivery. Recomendo muito!' },
-  { id: '3', name: 'Ana Paula', avatar: 'https://i.pravatar.cc/150?u=ana', text: 'As receitas são o diferencial do meu buffet agora. Meus clientes ficaram encantados com a qualidade.' },
+  { 
+    id: '1', 
+    name: 'Maria Silva', 
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop', 
+    text: 'Graças à Dona Lu, vendi 200 salgados na primeira semana! O suporte no WhatsApp é maravilhoso.' 
+  },
+  { 
+    id: '2', 
+    name: 'Beatriz Lopes', 
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop', 
+    text: 'Sempre cozinhei por hobby, mas esse curso me deu a segurança para abrir meu próprio negócio lucrativo.' 
+  },
+  { 
+    id: '3', 
+    name: 'Ana Paula Santos', 
+    avatar: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=200&h=200&auto=format&fit=crop', 
+    text: 'As receitas são o diferencial do meu buffet agora. Meus clientes ficaram encantados com a qualidade.' 
+  },
 ];
 
 const CourseSection: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
-    hours: 23,
-    minutes: 59,
-    seconds: 59
+    minutes: 15,
+    seconds: 0
   });
 
   useEffect(() => {
@@ -34,11 +48,9 @@ const CourseSection: React.FC = () => {
         if (prev.seconds > 0) {
           return { ...prev, seconds: prev.seconds - 1 };
         } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+          return { minutes: prev.minutes - 1, seconds: 59 };
         }
-        return { hours: 23, minutes: 59, seconds: 59 };
+        return { minutes: 15, seconds: 0 };
       });
     }, 1000);
 
@@ -55,7 +67,7 @@ const CourseSection: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <span className="text-amber-500 font-bold uppercase tracking-widest text-sm mb-4 block">Treinamento Online</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Escolha o seu plano</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif italic">Escolha o seu plano</h2>
           <p className="text-stone-400 max-w-3xl mx-auto text-lg">
             Aprenda com quem faturou alto vendendo salgados caseiros todos os dias.
           </p>
@@ -88,9 +100,12 @@ const CourseSection: React.FC = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 -mr-16 -mt-16 rounded-full"></div>
             
             <div>
-              <div className="bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-widest py-1.5 px-4 rounded-full inline-block mb-6 shadow-sm">
-                OFERTA MAIS COMPLETA
+              <div className="flex flex-col gap-3 mb-6">
+                <div className="bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-widest py-1.5 px-4 rounded-full inline-block w-fit shadow-sm">
+                  OFERTA MAIS COMPLETA
+                </div>
               </div>
+
               <h3 className="text-3xl font-black mb-2 font-serif text-stone-900 leading-tight">Curso Mestre dos Salgados</h3>
               <p className="text-stone-500 mb-8 text-sm font-medium">O treinamento definitivo para você dominar as massas, recheios e vendas.</p>
 
@@ -110,7 +125,13 @@ const CourseSection: React.FC = () => {
             </div>
 
             <div className="mt-auto">
-              <div className="mb-6 p-5 bg-stone-50 rounded-2xl border border-stone-100">
+              <div className="mb-6 p-5 bg-stone-50 rounded-2xl border border-stone-100 relative overflow-hidden">
+                 {/* Temporizador fixado dentro da borda da oferta */}
+                 <div className="flex items-center gap-1.5 text-orange-600 font-mono font-bold text-[11px] mb-3 bg-white py-1.5 px-3 rounded-lg w-fit border border-orange-200 shadow-sm">
+                    <Clock className="w-4 h-4 animate-pulse" />
+                    <span>OFERTA TERMINA EM: {formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}</span>
+                 </div>
+                 
                  <p className="text-stone-400 line-through text-xs font-bold mb-1">De R$ 197,00</p>
                  <div className="flex items-baseline gap-2">
                     <span className="text-stone-800 text-sm font-bold">Por apenas</span>
@@ -133,13 +154,9 @@ const CourseSection: React.FC = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 -mr-16 -mt-16 rounded-full"></div>
             
             <div>
-              <div className="bg-white/20 backdrop-blur-md text-white py-2 px-4 rounded-xl mb-6 inline-flex items-center gap-3 border border-white/30 shadow-inner">
-                <Clock className="w-4 h-4 animate-pulse" />
-                <div className="flex flex-col">
-                  <span className="text-[9px] font-black uppercase tracking-tighter opacity-80 leading-none mb-0.5">Expira em:</span>
-                  <span className="text-lg font-mono font-black tracking-widest leading-none">
-                    {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
-                  </span>
+              <div className="flex flex-col gap-3 mb-6">
+                <div className="bg-white/20 backdrop-blur-md text-white py-1.5 px-4 rounded-full text-[10px] font-black uppercase tracking-widest inline-block w-fit">
+                  RECEITAS EXCLUSIVAS
                 </div>
               </div>
               
@@ -174,6 +191,12 @@ const CourseSection: React.FC = () => {
 
             <div className="mt-auto">
               <div className="mb-6 p-5 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
+                 {/* Temporizador fixado dentro da borda da oferta das receitas */}
+                 <div className="flex items-center gap-1.5 text-white font-mono font-bold text-[11px] mb-3 bg-white/10 py-1.5 px-3 rounded-lg w-fit border border-white/20 shadow-sm">
+                    <Clock className="w-4 h-4 animate-pulse" />
+                    <span>EXPIRA EM: {formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}</span>
+                 </div>
+
                  <p className="text-amber-100 line-through text-xs font-bold mb-1">De R$ 97,00</p>
                  <div className="flex items-baseline gap-2">
                     <span className="text-amber-50 text-sm font-bold">Por apenas</span>
@@ -197,12 +220,12 @@ const CourseSection: React.FC = () => {
         <div className="mt-32">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold mb-2 text-stone-100">Quem já aprendeu aprova!</h3>
-            <p className="text-stone-400">Junte-se a centenas de alunos que mudaram de vida.</p>
+            <p className="text-stone-400">Junte-se a centenas de alunas que mudaram de vida.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {TESTIMONIALS.map((t) => (
               <div key={t.id} className="bg-stone-800/40 p-8 rounded-3xl border border-stone-700/50 flex flex-col items-center text-center hover:bg-stone-800/60 transition-all">
-                <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4 border-4 border-amber-500 shadow-lg" />
+                <img src={t.avatar} alt={t.name} className="w-20 h-20 rounded-full mb-4 border-4 border-amber-500 shadow-lg object-cover" />
                 <div className="flex gap-1 mb-4 text-amber-500">
                     {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
                 </div>

@@ -20,10 +20,8 @@ const App: React.FC = () => {
         <CourseSection />
       </main>
 
-      <Footer />
-      
-      {/* Social Proof Notification */}
       <SalesNotification />
+      <Footer />
     </div>
   );
 };
